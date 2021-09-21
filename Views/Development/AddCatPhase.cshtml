@@ -1,0 +1,250 @@
+@model MvcDemo.Models.MilestoneViewModel
+
+<style>
+
+.header h1{
+    font-family:HelveticaNeue-Light;
+    color:#0F3A61; 
+    margin-top:8%;
+}
+
+.return img{
+    width: 35px; 
+    margin-left:6%; 
+    margin-bottom:1em;
+}
+
+.input{
+    border-radius: 50px;
+    width:75%;
+    text-align: center;
+}
+
+.test textarea{
+    width:75%;
+    height:5em; 
+    border-color:#0F3A61;
+}
+
+    .btn {
+  background-color: #22B7AD;
+  border: none;
+  color: #0F3A61;
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 50px;
+  margin-left: 10px;
+  }
+  
+   .btn-add {
+  background-color: #22B7AD;
+  border: none;
+  color: #0F3A61;
+  padding: 8px;
+  font-size: 10px;
+  border-radius: 50px;
+  margin-left: 10px;
+  }
+
+@@media only screen and (min-width:768px){
+
+.test{
+    width:75%;
+    height:5em; 
+    border-color:#0F3A61;
+}
+
+
+   
+}
+
+
+@@media only screen and (min-width:1000px){
+       
+        .return img{
+            width: 50px; 
+            margin-left:10%; 
+            margin-bottom:1%;
+            }
+
+        .header h1{
+                     margin-top:3%;
+                   }
+
+        .input{
+            
+            width:70%;
+           
+        }
+
+        .column-1{
+            width:40%;
+            float:left;
+            margin-left:10%;
+        }
+
+        .column-2{
+            width:40%;
+            float:right;
+            margin-right:10%;
+        }
+
+        .image-container{
+            clear:both;
+            
+        }
+        .image-container input{
+            width:30%;
+        }
+
+        .cat-container input{
+            width:30%;
+        }
+
+}
+
+
+</style>
+
+  <script>
+       
+      
+
+        function myFunction() {
+
+            var x = document.getElementById("SingleMilestone").value;
+           
+            var anotherTest = "- "+ x +"\n"+document.getElementById( "milestones").innerHTML;
+
+          document.getElementById("milestones").innerHTML= anotherTest;
+
+          document.getElementById("SingleMilestone").value="";
+
+        }
+
+        function myFunction2()
+        {
+           var y = document.getElementById("SingleWarning").value;
+
+            var test = "- "+ y +"\n"+document.getElementById( "warnings").innerHTML;
+
+          document.getElementById("warnings").innerHTML= test;
+
+          document.getElementById("SingleWarning").value=" ";
+
+        }
+
+       function clearMilestones()
+        {
+           document.getElementById("milestones").innerHTML="";
+        }
+
+         function clearWarnings()
+        {
+           document.getElementById("warnings").innerHTML="";
+        }
+
+
+
+    </script>
+
+
+
+    <center>
+        <div class="header">
+           <h1>Create Development Phase</h1>
+        </div>
+    </center>
+
+   
+    <div class ="return">
+        <a asp-controller="Development" asp-action="AgeCategories"> <img src="~/css/Images/return.png"   /></a>  
+    </div>
+    <hr />
+
+
+<center>
+      <form asp-action="AddCatPhase"  enctype="multipart/form-data" >
+          
+          
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+              <div class="form-group">
+                <label asp-for="category" class="control-label"></label>
+                <div class="cat-container">
+                <input  asp-for="category"  class="form-control input" value=@ViewBag.CatId  readonly />
+                </div>
+              </div>
+
+
+
+                <div class="column-1">
+               
+                           <div class="form-group">
+                                <label asp-for="title" class="control-label"></label>
+                                <input  asp-for="title" class="form-control input" placeholder="Title" />
+                                <span asp-validation-for="title" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label id="lblMilestones" class="control-label">Milestone</label>
+                                <input  id="SingleMilestone" class="form-control input"  placeholder="Milestone" />
+                                <button type="button" style="width:60px; height:30px; margin-top:7px" class="btn-add" onclick="myFunction()"> Add</button>
+                            </div>
+
+                            <div class="form-group">
+                            <div class="test">
+                            <textarea asp-for="milestones" id="milestones" class="test" readonly ></textarea> </div>
+                            <br>  <span asp-validation-for="milestones" class="text-danger"></span>
+                             <button type="button" style="width:60px;height:30px;margin-top:-3px" class="btn-add" onclick="clearMilestones()"> Clear</button>
+                            </div>
+
+                
+                    </div>
+
+                <div class="column-2">
+                
+                <div class="form-group">
+                                <label asp-for="tips" class="control-label"></label>
+                                <input  asp-for="tips" class="form-control input"  placeholder="Tips" />
+                                <span asp-validation-for="tips" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label id="lblWarnings" class="control-label">Watch Out For</label>
+                                <input  id="SingleWarning" class="form-control input"  placeholder="Warning" />
+                                <button type="button" style="width:60px;height:30px; margin-top:5px;" class="btn-add" onclick="myFunction2()"> Add</button>
+                            </div>
+
+                            <div class="form-group">
+                            
+                           <div class="test"> <textarea asp-for="warnings" id="warnings" readonly ></textarea></div>
+                            <br>   <span asp-validation-for="warnings" class="text-danger"></span>
+                             <button type="button" style="width:60px;height:30px; margin-top:-3px;" class="btn-add" onclick="clearWarnings()"> Clear</button>
+                
+                            </div>
+
+               
+
+                </div>
+
+                        <div class="image-container">
+                            <div class="form-group">
+                                <label id="lblImage" class="control-label">Image</label>
+                                <input  name="postedFiles"  type="file"  style="height:40px;" class="form-control input" placeholder="Title"  multiple />
+                                <p style="color: red;">@ViewBag.Error</p>
+                            </div>
+
+                            <div class="form-group" >
+                                <input type="submit" value="Create" style="width:150px; margin-top:10px;" class="btn"  />
+                            </div>
+                        </div>
+
+
+ </form>
+
+</center>
+
+  
+
+

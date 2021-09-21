@@ -1,0 +1,33 @@
+*{
+  margin:0;
+  padding:0;
+}
+
+.wrapper{
+  width:100%;
+}
+
+
+.img-info{
+  width: 100%
+  
+}
+
+.img-info h1{
+  padding: 0px 30px 0px 20px;
+  font-family:HelveticaNeue-Light;
+  color:#0F3A61;
+  line-height: 44px;
+}
+
+.img-info p{
+  padding: 0px 30px 0px 20px;
+  font-family:HelveticaNeue-Light;
+  color:#0F3A61;
+  line-height: 24px;
+}
+
+.img-ph{
+  width:100%;
+}
+

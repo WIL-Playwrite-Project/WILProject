@@ -1,0 +1,268 @@
+@using Microsoft.AspNetCore.Http;
+@model IEnumerable<MvcDemo.Models.Activity>
+
+
+<center>
+    <div class="header">
+      <h1>Activities for @ViewBag.CatId</h1>
+    </div>
+  <hr/>
+</center>
+
+<div class ="return">
+<a asp-controller="Development" asp-action="AgeCatPhase" asp-route-id="@ViewBag.CatId" > <img src="~/css/Images/return.png"   /></a>  
+</div>
+
+
+@{
+    if(Context.Session.GetString("UserRole") != null)
+          {
+             <center>
+                 <a asp-controller="Development" asp-action="AddCatActivity" asp-route-id="@ViewBag.CatId" style="width:120px;margin-bottom:20px;" class="btn">Add Activity</a> 
+            </center>
+
+          }
+
+    var counter=0;
+
+    if(Model !=null)
+    {
+
+        foreach(var item in Model)
+        {
+          
+            if(item!=null)
+          {
+
+              <div class="title">
+                        <center>
+                          <h1><b>@item.title</b></h1>
+                        </center>
+              </div>
+
+               <!--images-->
+                  <div class="images"> 
+                    <center>
+                        @{
+                           if(item.mediaUrl !=null)
+                             {
+                                if(item.mediaUrl.Contains("mp4"))
+                                  {
+                                    <video controls>
+                                        <source src="@item.mediaUrl" type="video/mp4">
+                                    </video>
+                                  }
+                                 
+                                 else
+                                   {
+                                    <img src="@item.mediaUrl"  />
+                                   }
+                              }
+                        }
+
+                     </center>
+                 </div>
+
+
+                 <div class="tips"> 
+                     <div class="card mb-3" style="border-color:#600227;">
+                         <div class="card-header">
+                             <center>
+                                <h1>Activity Tips</h1>
+                             </center>
+                          </div>
+
+                         <div class="card-body">
+                           <center>
+                            @item.tips
+                            </center>
+                          </div>
+                     </div>
+                </div> 
+
+          <div style="clear:both; margin-bottom:5px;"></div>
+
+          if(Context.Session.GetString("UserRole") != null)
+          {
+            <center>
+              <p style="float: inline-end; width:200px; margin-bottom:20px;" onclick="DeleteActivity('@item.category','@item.title','@item.tips','@item.mediaUrl')"  class="btn"> Delete Activity</p>
+            </center>
+        }
+
+        <hr/>
+       
+        counter++;
+
+          }
+        }
+    }
+
+}
+
+ <script type="text/javascript">
+
+    function DeleteActivity(cat,title,tips,media) {
+      alert(media);
+
+      let str = media.replace('&', '%');
+      
+      alert(str);
+    
+    if (confirm("Do you really want to delete this activity?"))
+        window.location.href ="/Development/DeleteCatActivity?cat="+cat+"&title="+ title+"&tips="+tips+"&media="+str ;
+    else
+        return false;
+}
+       
+</script>
+
+
+
+
+<style>
+
+.btn {
+  background-color: #22B7AD;
+  border: none;
+  color: #0F3A61;
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 50px;
+  margin-left: 10px;
+}
+
+.header h1{
+    font-family:HelveticaNeue-Light;
+    color:#0F3A61; 
+    margin-top:8%;
+}
+
+.return img{
+    width: 35px; 
+    margin-left:10%; 
+    margin-bottom:1em;
+}
+
+.title{
+    margin-right:3%; 
+    margin-left:3%;  
+    border-color:#0F3A61; 
+    height:3em;
+    background-color:#A8E7E3;
+    margin-bottom: 1px;
+    margin-top:0px;
+}
+
+.title h1{
+   font-family:HelveticaNeue-Light;
+   color:#0F3A61;
+   padding-top:3%; 
+   font-size: 17px;
+}
+
+.images{
+    margin-top:20px;
+}
+
+.images img{
+   width:300px; 
+   height:auto; 
+   border-radius: 2px;
+}
+
+.images video{
+   width:300px; 
+   height:auto; 
+   border-radius: 2px;
+}
+
+.tips{
+    width:90%;  
+    margin-top:10px; 
+    margin-bottom:5%;
+    margin-left:5%;
+}
+
+.tips h1{
+    font-family:HelveticaNeue-Light;
+    color:#0F3A61; 
+    font-size: 20px;
+}
+
+@@media only screen and (min-width:768px){
+       .title h1{
+            padding-top:2%; 
+            font-size: 17px;
+        }
+
+        .tips{
+          width:605px;  
+          margin-left:9%;
+      }
+
+        .images video{
+        width:600px; 
+        height:auto; 
+        border-radius: 2px;
+        }
+
+        .images img{
+        width:600px; 
+        height:auto; 
+        border-radius: 2px;
+        }
+
+        .title{
+        margin-right:5%; 
+        margin-left:5%;  
+    }
+
+}
+
+@@media only screen and (min-width:1000px){
+        .header h1{
+                     margin-top:3%;
+                   }
+
+        .return img{
+            width: 50px; 
+            margin-left:10%; 
+            margin-bottom:1%
+            }
+
+        .title{
+            margin-right:5%; 
+            margin-left:5%; 
+            height:6em;
+           
+        }
+
+        .title h1{
+            padding-top:2.5%; 
+            font-size: 27px;
+        }
+
+        .tips{
+          width:43%;
+          float:right;  
+          margin-right:5%;
+          margin-left:0%;
+          margin-top:5%;
+      }
+
+      .images{
+          width:43%;
+          float:left;
+          margin-left:5%;
+      }
+
+      .btn {
+        margin-top:3%;
+      }
+
+
+}
+
+
+
+</style>

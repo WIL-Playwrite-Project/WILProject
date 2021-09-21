@@ -1,0 +1,344 @@
+﻿
+@{
+    ViewData["Title"] = "Home Page";
+   
+}
+ 
+<body>
+
+<!--banner image-->
+<img class="img-banner" src="~/css/Images/bg1.png" />
+
+<div style="margin-top: 3em;"></div>
+
+<!--about us details-->
+<div class="wrapper" >
+  <article class="img-info" >
+     <h1 style="margin-top:1em"><b>Playwrite</b></h1>
+     <h1><b>Occupational</b></h1>
+     <h1><b>Therapy</b></h1>
+    <p>
+      A child-centred OT practice using a combination of Ayres’ Sensory Integration, DIR Floortime & Tomatis to help children reach their potential.
+    </p>
+  </article>
+
+  <img class="img-ph" src="~/css/Images/placeholder.png" />
+
+</div>
+
+<!--allows there to be a space after the contents of the screen-->
+<div  style="clear: both;"></div>
+
+
+<!--header for the services offered-->
+<div class="service-header" >
+     <p>SERVICES</p>
+     <h1><b>Treatment Sessions</b></h1>
+     <h1><b>and Workshops</b></h1>
+</div>
+
+
+<!--services blocks-->
+<div class="wrapper">
+ <div class="service-blue service-green-1" style="margin-top:1em"> 
+      <center>
+             <img src="~/css/Images/schedule.png"  style="padding-top:10%; width:25%; height:auto;"/>
+               <h1><b>Individual Occupational</b></h1>
+                <h1><b>Therapy Sessions</b></h1>
+                <p>Individual occupational therapy sessions take place within our spacious and well-equipped therapy room. Therapists within the practice are Ayres' Sensory Integration and DIR Floortime trained.</p>
+      </center>
+      
+ </div>
+</div>
+
+<div class="wrapper"> 
+  <div class="service-green service-blue-1" style="margin-top:1em">
+       <center>
+             <img src="~/css/Images/workshop.png"  style="padding-top:10%; width:25%; height:auto;"/>
+               <h1><b>Information Workshops</b></h1>
+               <h1><b>1 hour 30 minutes</b></h1>
+               <p>Topic-specific workshops aimed at informing teachers and parents.</p>
+      </center>
+    </div>
+  </div>
+
+
+<div class="wrapper">
+ <div class="service-blue service-blue-2" style="margin-top:1em"> 
+      <center>
+             <img src="~/css/Images/schedule.png"  style="padding-top:10%; width:25%; height:auto;"/>
+               <h1><b>Tomatis TalksUp</b></h1>
+                <h1><b>Duration varies</b></h1>
+                <p>Individualised Tomatis-based intervention which can either be carried out within the practice under supervision, or at home for clients who have busy schedules or live away from the practice.</p>
+      </center>
+ </div>
+</div>
+
+<div class="wrapper"> 
+  <div class="service-green service-green-2" style="margin-top:1em">
+       <center>
+             <img src="~/css/Images/workshop.png"  style="padding-top:10%; width:25%; height:auto;"/>
+               <h1><b>SIPT Assessments</b></h1>
+               <h1><b>Duration varies</b></h1>
+               <p>Sensory Integration and Praxis Tests carried out with children aged four to eight years old. This is the gold-standard assessment for sensory integration assessment.</p>
+      </center>
+    </div>
+  </div>
+
+<div style="clear: both;"></div>
+
+</body>
+
+
+
+<!--styling-->
+
+<style>
+
+  *{
+  margin:0;
+  padding:0;
+}
+
+.wrapper{
+  width:100%;
+}
+
+
+.img-info{
+  width: 100%
+  
+}
+
+.img-info h1{
+  padding: 0px 30px 0px 20px;
+  font-family:HelveticaNeue-Light;
+  color:#0F3A61;
+  line-height: 44px;
+}
+
+.img-info p{
+  padding: 0px 30px 0px 20px;
+  font-family:HelveticaNeue-Light;
+  color:#0F3A61;
+  line-height: 24px;
+}
+
+.img-ph{
+  width:100%;
+}
+
+.img-banner{
+  display:none;
+}
+
+
+.service-header{
+  margin-top:5%;
+  height:100px; 
+  background-color:#94DBDE;
+  margin-bottom:40px;
+  padding-top: 1.5em;
+  text-align: center;
+}
+
+.service-header p{
+  font-family:HelveticaNeue-Light;
+  color:#0F3A61; 
+  font-size: 10px;
+  letter-spacing:5px;
+  margin-bottom: -1px;
+}
+
+.service-header h1{
+  font-family:HelveticaNeue-Light;
+  color:#0F3A61;
+  font-size:15px;
+}
+
+
+.service-blue{
+  width:100%; 
+  height:25em; 
+  background-color:#CEECFB;
+  text-align: center;
+}
+
+.service-blue h1{
+  font-family:HelveticaNeue-Light;
+  color:#0F3A61; 
+  font-size: 19px; 
+}
+
+.service-blue p{
+  font-family:HelveticaNeue-Light;
+  color:#0F3A61; 
+  font-size: 15px; 
+  margin-left:1em;
+  margin-right:1em;
+  margin-top:1em;
+}
+
+.service-green{
+  width:100%; 
+  height:25em; 
+  background-color:#A8E7E3;
+  text-align: center;
+}
+
+.service-green h1{
+  font-family:HelveticaNeue-Light;
+  color:#0F3A61; 
+  font-size: 19px; 
+}
+
+.service-green p{
+  font-family:HelveticaNeue-Light;
+  color:#0F3A61; 
+  font-size: 15px; 
+  margin-left:1em;
+  margin-right:1em;
+  margin-top:1em;
+}
+
+
+
+@@media only screen and (min-width:768px)
+{
+  .wrapper{
+  width:600px;
+  margin: 0 auto;
+}
+
+.img-banner{
+  display:block;
+  width:100%;
+  padding-bottom: 30px;
+}
+
+.img-info h1{
+  padding: 0px 0px 0px;
+}
+
+.img-info p{
+  padding: 0px 0px 0px;
+}
+
+.img-ph{
+  padding-top:30px;
+}
+
+.service-header{
+  margin-top:5%;
+  height:200px; 
+  background-color:#94DBDE;
+  margin-bottom:60px;
+  padding-top: 2em;
+}
+
+.service-header p{
+font-family:HelveticaNeue-Light;
+color:#0F3A61; 
+font-size: 20px;
+letter-spacing:5px;
+margin-bottom: 0px;
+}
+
+.service-header h1{
+  font-family:HelveticaNeue-Light;
+  color:#0F3A61;
+  font-size:35px;
+}
+
+.service-blue p{
+  font-size: 20px; 
+  
+}
+
+}
+
+@@media only screen and (min-width:1000px)
+{
+  .wrapper{
+  width:95%;
+}
+
+.img-info{
+  width:50%;
+  float:right;
+}
+
+.img-info h1{
+  padding: 20px 0px -15px 20px;
+  width:30%
+}
+
+.img-info p{
+  width:30%;
+  padding: 20px 0px 0px 30px;
+ 
+}
+
+.img-ph{
+  padding-top:0px;
+  width:30%;
+  float:right;
+  margin-right:5em;
+}
+
+
+.service-green{
+  width:48%; 
+  
+  height: 30em;
+}
+
+.service-green-1{
+float:left;
+}
+
+.service-green-2{
+float:left;
+}
+
+
+.service-blue{
+  width:48%; 
+  height: 30em;
+}
+
+
+.service-blue-1{
+float:right;
+}
+
+.service-blue-2{
+float:right;
+}
+
+.service-blue h1{
+  font-size: 23px; 
+}
+
+.service-blue p{
+  font-size: 19px; 
+  margin-left:2em;
+  margin-right:2em;
+  
+}
+
+.service-green h1{
+  font-size: 23px; 
+}
+
+.service-green p{
+  font-size: 19px; 
+  margin-left:2em;
+  margin-right:2em;
+  
+}
+
+}
+
+
+</style>

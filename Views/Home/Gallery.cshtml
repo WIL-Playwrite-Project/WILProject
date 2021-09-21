@@ -1,0 +1,153 @@
+@using Microsoft.AspNetCore.Http;
+
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap" rel="stylesheet">
+
+
+@{
+
+    if(Context.Session.GetString("UserRole") != null){
+    <center>
+
+     <h4 style="font-family:HelveticaNeue-Light;color:#0F3A61; margin-top:7%">Upload Images</h4>
+     
+     <form asp-action="AddImages" asp-controller="Home"  enctype="multipart/form-data" >
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+             <div class="form-group" style="clear:both;">
+                <input  name="postedFiles"  type="file" style="width:400px; height:45px; border-radius:50px;"  class="form-control" placeholder="Images"  multiple />
+                
+                <p style="color: red;">@ViewBag.Error</p>
+            </div>
+
+            <div class="form-group" >
+                <input type="submit" value="Upload" style="width:150px" class="btn"  />
+            </div>
+    </form>
+
+
+    </center>
+    }
+
+}
+
+<div style="margin-top:2em">
+
+
+<div class="gallery">
+	
+
+        @{
+            int num = ViewBag.Urls.Count;
+            int numPerColumn = num/4;
+            int extra = num%4;
+            int index =0;
+            
+            for(int i=0; i<4; i++)
+            {
+                <div class="gallery__column">
+
+                    @{
+                        for(int j=0; j< numPerColumn; j++)
+                    {
+                        <a target="_blank" class="gallery__link">
+                        <figure class="gallery__thumb">
+                            <img src=@ViewBag.Urls[index]  class="gallery__image">
+                        </figure> </a>
+
+                        index++;
+                    }
+
+                    if(i == 3)
+                    {
+                        for(int k = 0; k<extra; k++)
+                        {
+                            
+                            <a target="_blank" class="gallery__link">
+                            <figure class="gallery__thumb">
+                                <img src=@ViewBag.Urls[index]  class="gallery__image">
+                            </figure> </a>
+
+                            index ++;
+                        }
+
+                    }
+
+                    }
+                    
+                </div>
+            }
+
+        }
+
+	</div>
+
+</div>
+
+
+
+
+
+<style>
+    .gallery {
+	 display: flex;
+	 
+	 transition: 0.3s;
+}
+ .gallery:hover .gallery__image {
+	 filter: grayscale(1);
+}
+ .gallery__column {
+	 display: flex;
+	 flex-direction: column;
+	 width: 25%;
+}
+ .gallery__link {
+	 margin: 2px;
+	 overflow: hidden;
+}
+ .gallery__link:hover .gallery__image {
+	 filter: grayscale(0);
+}
+ .gallery__link:hover .gallery__caption {
+	 opacity: 1;
+}
+ .gallery__thumb {
+	 position: relative;
+}
+ .gallery__image {
+	 display: block;
+	 width: 100%;
+	 transition: 0.3s;
+}
+ .gallery__image:hover {
+	 transform: scale(1.1);
+}
+ .gallery__caption {
+	 position: absolute;
+	 bottom: 0;
+	 left: 0;
+	 padding: 25px 15px 15px;
+	 width: 100%;
+	 font-family: 'Raleway', sans-serif;
+	 font-size: 16px;
+	 color: white;
+	 opacity: 0;
+	 background: linear-gradient(0deg, rgba(0, 0, 0, .5) 0%, rgba(255, 255, 255, 0) 100%);
+	 transition: 0.3s;
+}
+
+ .btn {
+  background-color: #22B7AD;
+  border: none;
+  color: #0F3A61;
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 50px;
+  margin-left: 10px;
+  }
+
+  
+
+
+ 
+</style>

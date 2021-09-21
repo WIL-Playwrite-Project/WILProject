@@ -1,0 +1,342 @@
+@using Microsoft.AspNetCore.Http
+@model IEnumerable<MvcDemo.Models.Phase>
+
+
+ <script type="text/javascript">
+
+  
+    function DeleteAge() {
+    if (confirm("Do you really want to delete this age category?"))
+        window.location.href = "/Development/DeleteDevCategory";
+    else
+        return false;
+    }
+
+    function DeletePhase(counter) {
+
+      alert(counter);
+    if (confirm("Do you really want to delete this age category?"))
+        window.location.href = "/Development/DeleteCatPhase/"+counter;
+    else
+        return false;
+}
+       
+</script>
+
+<center>
+    <div class="header">
+      <h1 >@ViewBag.CatId</h1>
+    </div>
+  <hr/>
+</center>
+
+<div class ="return">
+<a asp-controller="Development" asp-action="AgeCategories"> <img src="~/css/Images/return.png"   /></a>  
+</div>
+
+@{
+
+      if(Context.Session.GetString("UserRole") != null)
+          {
+            <center>
+              <a asp-controller="Development" asp-action="AddCatPhase" asp-route-id="@ViewBag.CatId" style="width:120px;margin-bottom:20px;" class="btn">Add Phase</a>  
+              <a asp-controller="Development" asp-action="AgeCatActivities" asp-route-id="@ViewBag.CatId" style="width:120px;margin-bottom:20px;" class="btn">Activities</a> 
+            </center>
+          }
+          else{
+             <center>
+             <a asp-controller="Development" asp-action="AgeCatActivities" asp-route-id="@ViewBag.CatId" style="width:120px;margin-bottom:20px;" class="btn">Activities</a> 
+            </center>
+          }
+  
+
+  var counter=0;
+
+if(Model !=null)
+{
+
+     foreach(var item in Model)
+    {
+      
+      if(item!=null)
+    {
+
+    
+            <div class="title">
+                    <center>
+                      <h1><b>@item.title</b></h1>
+                    </center>
+            </div>
+
+          
+                <!--milestones-->
+               <div class="milestones"> 
+                     <div class="card border-info mb-3">
+                         <div class="card-header" >
+                             <center>
+                                <h1>Important Milestones</h1>
+                             </center>
+                          </div>
+
+                         <div class="card-body">
+                            <ul>
+                                @{
+                                  foreach(var milestone in item.milestones)
+                                   {
+                                     <li class="card-text" > @milestone </li>
+                                   }
+                                 }
+                            </ul>
+                          </div>
+                     </div>
+               </div>
+
+           
+                <!--images-->
+                  <div class="images"> 
+                    <center>
+                        @{
+                           if(item.imageUrl !=null)
+                             {
+                                if(item.imageUrl.Contains("mp4"))
+                                  {
+                                    <video controls>
+                                        <source src="@item.imageUrl" type="video/mp4">
+                                    </video>
+                                  }
+                                 
+                                 else
+                                   {
+                                    <img src="@item.imageUrl"  />
+                                   }
+                              }
+                        }
+
+                       
+                     </center>
+                 </div>
+
+         
+              if(item.imageUrl =="")
+              {
+                    <div class="warnings" style=" width:43%;float:right; margin-right:5%; margin-top:-55px; margin-left:0px"> 
+                     <div class="card mb-3" style="border-color:#600227;">
+                         <div class="card-header" >
+                             <center>
+                                <h1>Watch Out For</h1>
+                             </center>
+                          </div>
+
+                         <div class="card-body">
+                            <ul>
+                                @{
+                                  foreach(var milestone in item.warnings)
+                                   {
+                                     <li class="card-text" > @milestone </li>
+                                   }
+                                 }
+                            </ul>
+                          </div>
+                     </div>
+               </div>
+
+
+                   
+              }
+              else{
+                  <div class="warnings"> 
+                     <div class="card mb-3" style="border-color:#600227;">
+                         <div class="card-header" >
+                             <center>
+                                <h1>Watch Out For</h1>
+                             </center>
+                          </div>
+
+                         <div class="card-body">
+                            <ul>
+                                @{
+                                  foreach(var milestone in item.warnings)
+                                   {
+                                     <li class="card-text" > @milestone </li>
+                                   }
+                                 }
+                            </ul>
+                          </div>
+                     </div>
+               </div>
+
+              }
+                
+      <div style="clear:both;"></div>
+
+         if(Context.Session.GetString("UserRole") != null)
+          {
+            <center>
+              <p style="float: inline-end; width:200px; margin-bottom:50px;" onclick="DeletePhase(@counter)"  class="btn"> Delete Age Category</p>
+            </center>
+        }
+       
+        counter++;
+    
+    }
+  }
+
+}
+}
+
+
+<style>
+
+.header h1{
+    font-family:HelveticaNeue-Light;
+    color:#0F3A61; 
+    margin-top:8%;
+}
+
+.return img{
+    width: 35px; 
+    margin-left:10%; 
+    margin-bottom:1em;
+}
+
+  .btn {
+  background-color: #22B7AD;
+  border: none;
+  color: #0F3A61;
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 50px;
+  margin-left: 10px;
+}
+
+.title{
+    margin-right:3%; 
+    margin-left:3%;  
+    border-color:#0F3A61; 
+    height:3em;
+    background-color:#A8E7E3;
+    margin-bottom: 1px;
+    margin-top:0px;
+}
+
+.title h1{
+   font-family:HelveticaNeue-Light;
+   color:#0F3A61;
+   padding-top:3%; 
+   font-size: 17px;
+}
+
+.milestones{
+    width:90%;  
+    margin-top:10px; 
+    margin-bottom:5%;
+    margin-left:5%;
+}
+
+.milestones h1{
+    font-family:HelveticaNeue-Light;
+    color:#0F3A61; 
+    font-size: 20px;
+}
+
+.images{
+    margin-top:20px;
+}
+
+.images img{
+   width:300px; 
+   height:auto; 
+   border-radius: 2px;
+}
+
+.images video{
+   width:300px; 
+   height:auto; 
+   border-radius: 2px;
+}
+
+.warnings{
+    width:90%;  
+    margin-bottom:5%;
+    margin-left:5%;
+    margin-top: 2em;
+}
+
+.warnings h1{
+    font-family:HelveticaNeue-Light;
+    color:#0F3A61; 
+    font-size: 20px;
+}
+
+
+
+@@media only screen and (min-width:768px){
+       .title h1{
+            padding-top:2%; 
+            font-size: 17px;
+        }
+
+        .images video{
+        width:600px; 
+        height:auto; 
+        border-radius: 2px;
+        }
+
+        .images img{
+        width:600px; 
+        height:auto; 
+        border-radius: 2px;
+        }
+
+        .title{
+        margin-right:5%; 
+        margin-left:5%;  
+    }
+
+}
+
+
+@@media only screen and (min-width:1000px){
+        .header h1{
+                     margin-top:3%;
+                   }
+
+        .return img{
+            width: 50px; 
+            margin-left:10%; 
+            margin-bottom:1%
+            }
+
+        .title{
+            margin-right:5%; 
+            margin-left:5%; 
+            height:6em;
+           
+        }
+
+        .title h1{
+            padding-top:2.5%; 
+            font-size: 27px;
+        }
+
+        .milestones{
+          width:45%;  
+          float: left;
+          margin-bottom:-1px;
+      }
+
+      .images{
+          margin-top:3%;
+          width:43%;
+          float:right;
+          margin-right:5%;
+          margin-left:1px;
+      }
+
+      .warnings{
+        width:45%;  
+      }
+
+}
+
+</style>

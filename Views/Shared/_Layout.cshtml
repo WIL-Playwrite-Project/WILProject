@@ -1,0 +1,222 @@
+﻿@using Microsoft.AspNetCore.Http
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MvcDemo</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+   <link rel="stylesheet" href="~/css/site.css" />
+</head>
+
+<style>
+    .p1{
+        font-family: HelveticaNeue-Light;
+        color: #0F3A61;;
+        font-size: 1em;
+        letter-spacing: 0.25em;
+       }
+
+       .p2{
+        font-family: HelveticaNeue-Light;
+        color: #0F3A61;
+        font-size: 1em;
+       }
+
+    a{
+        color: #0F3A61;
+    }
+
+    nav a:hover{
+        font-size: large;
+    }
+
+   
+</style>
+
+<body>
+ 
+   
+    <div style="margin-top: 10px;">
+ 
+    <center>
+        <img src="~/css/Images/logo.png" style="width:15em; height:auto;" />
+        <br>
+         <p class="p1"><b> OCCUPATIONAL THERAPY </b></p>
+    </center>  
+
+</div>
+
+    <header style="margin-bottom: -25px; padding-bottom:-25px;"> 
+       
+        <nav class="navbar navbar-expand-xl navbar-toggle navbar-light bg-white  box-shadow mb-3" style="padding-top:1.60%">
+            <div class="container" >
+                <a class="navbar-brand " asp-action="Index" asp-controller="Home"><p class="p2"> <b>Home</b></p></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact"> <p class="p2">Contact Us</p></a>
+                        </li>
+                       <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Gallery"> <p class="p2">Gallery</p></a>
+                        </li>
+                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Development" asp-action="AgeCategories"> <p class="p2">Child Development</p></a>
+                        </li>
+                        @{
+                            if(Context.Session.GetString("UserRole") == "Admin")
+                               {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="AddUser"> <p class="p2">Add User</p></a>
+                                </li>
+                               }
+                        }
+                        
+                    </ul>
+                    <ul class="nav justify-content-end">
+                        @{
+
+                            if(Context.Session.GetString("UserRole") != null)
+                               {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Logout"> <p class="p2"><b>Logout</b></p></a>
+                                </li>
+                               }
+                        }
+                        <li class="nav-item">
+                            <a class="nav-link text-dark disabled" asp-area="" asp-controller="Home" aria-disabled="true"  asp-action="Index"> <p class="p2">+27 72 342 8252  |  playwrite@email.com</p></a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container-fluid body-content">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+
+     <footer style="background-color: #7BCFC9; margin-bottom:-5em; margin-top:10em;">
+         <div class="row my-5 justify-content-center py-5">
+             <div class="col-11">
+
+            
+                <div class="container-1">
+                      <h2><b>Playwrite </b></h2>
+                </div>
+
+
+                 <div class="container-2">
+                        <h7><b>ADDRESS</b></h7>
+                         <p class="mb-1">Office 2, 55 Old Main Road</p>
+                         <p>Gillitts 3610 Durban <br> South Africa</p>
+                  
+                         <h7><b>OR FIND US HERE</b></h7>
+                         <br>
+                        <div style="margin-top:7px">
+                         <a href="https://www.facebook.com/playwriteOT/"><img src="~/css/Images/fb.png" style="width:30px;" /> </a> 
+                          <a href="https://www.instagram.com/playwriteot/?hl=en">  <img src="~/css/Images/insta.png" style="width:30px;" /> </a>
+
+                        </div>
+                </div>
+
+                 <div class="container-3" >
+                     <center>
+                      <h6 style="margin-top:7%; color:#0F3A61; margin-left:20px;"><b>Admin</b></h6>
+                      <a asp-controller="User" asp-action="Login">  <button class="blue-button"> Login</button></a>  
+                      </center>
+                </div>
+
+                
+                <div style="clear:both ; margin-top:5em;">
+                <center>
+                 <small style="color: #3B3B3B;" class="rights"><span>&#174;</span> Playwrite All Rights Reserved.</small>
+                </center>
+                </div>
+                
+
+            </div>
+
+
+                 </div>
+             </div>
+         </div>
+     </footer>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+<style>
+
+.container-1{
+
+    width: 33.3%
+    
+}
+
+.container-1 h2{
+    margin-top:7%; 
+    color:#0F3A61;
+}
+
+.container-2 h7{
+   margin-top:7%; 
+   color:#0F3A61;
+}
+
+.container-2 p{
+    color: #3B3B3B;
+}
+
+.container-3{
+ margin-bottom:5px;
+}
+
+.blue-button{
+    background-color:#0F3A61;  
+    border: none;  
+    color: #7BCFC9; 
+    width:100px;  
+    padding: 10px; 
+    font-size: 15px;  
+    border-radius: 50px; 
+    margin-left: 10px;
+}
+
+@@media only screen and (min-width:768px)
+{
+    
+    .container-1{
+        float:left;
+    }
+
+    .container-2{
+        width:33.3%;
+        float: left;
+    }
+
+    container-3{
+        width: 33.3%;
+        float:right;
+    }
+
+
+}
+
+</style>
+
+
+
+
+</html>
