@@ -44,9 +44,9 @@ namespace MvcDemo.Utils
             }
 
 
-            List<Development> months = lstDev.Where(d => d.category.Contains("Months")).ToList();
+            List<Development> months = lstDev.Where(d => d.category.Contains("Months") || d.category.Contains("months")).ToList();
              months= orderList(months);   //gets list of ordered development objects
-            List<Development> years = lstDev.Where(d => d.category.Contains("Years")).ToList().OrderBy(l =>l.category).ToList();
+            List<Development> years = lstDev.Where(d => d.category.Contains("Years")|| d.category.Contains("years")).ToList().OrderBy(l =>l.category).ToList();
             years =orderList(years);     //gets list of ordered development objects
             
             lstDev = months.Concat(years).ToList();

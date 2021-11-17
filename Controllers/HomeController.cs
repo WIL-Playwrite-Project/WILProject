@@ -72,7 +72,7 @@ namespace MvcDemo.Controllers
                             {
                                 String ext = postedFile.FileName;
 
-                            if(ext.Contains("JPEG")|| ext.Contains("JPG")||ext.Contains("PNG"))
+                            if(ext.Contains("JPEG")|| ext.Contains("JPG")||ext.Contains("PNG")|| ext.Contains("jpeg"))
                             {
                                 
                                 string fileName = Path.GetFileName(postedFile.FileName);
@@ -170,7 +170,7 @@ namespace MvcDemo.Controllers
                     smtp.Send(msz);   //sends email
 
                     ModelState.Clear();
-                    ViewBag.Message = "Thank you for Contacting us ";  //message displayed to the user on successfully sending the email
+                    ViewBag.Message = "Thank you for contacting us.";  //message displayed to the user on successfully sending the email
                   
                 }
                 catch(Exception ex )
