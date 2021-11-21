@@ -151,6 +151,8 @@ namespace MvcDemo.Controllers
             {
                 try
                 {
+		
+		   //(Lock, 2020)
                     MailMessage msz = new MailMessage();
                     msz.From = new MailAddress(vm.Email);//Email which you are getting from view
 								
@@ -191,3 +193,9 @@ namespace MvcDemo.Controllers
        
     }
 }
+
+//Lock, M. 2020.How to send email in ASP.NET C#.[online] Available at: <https://stackoverflow.com/questions/18326738/how-to-send-email-in-asp-net-c-sharp>
+
+
+
+
